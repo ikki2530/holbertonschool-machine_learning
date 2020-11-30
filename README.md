@@ -3,34 +3,15 @@
 
 # Content Table
 1. Description
-2. Learning Objectives
-3. Requirements
-4. More info
+2. Requirements
+3. More info
+4. Authors
 
 # Description
 Repository for Machine Learning Especialization projects in Holberton School.
 
 ### *Directories*
 [math](https://github.com/ikki2530/holbertonschool-machine_learning/tree/main/math) Essential maths for Machine Learning.
-
-
-
-# Learning Objectives
-### General
-- What is a vector?
-- What is a matrix?
-- What is a transpose?
-- What is the shape of a matrix?
-- What is an axis?
-- What is a slice?
-- How do you slice a vector/matrix?
-- What are element-wise operations?
-- How do you concatenate vectors/matrices?
-- What is the dot product?
-- What is matrix multiplication?
-- What is Numpy?
-- What is parallelization and why is it important?
-- What is broadcasting?
 
 # Requirements
 
@@ -50,3 +31,34 @@ Repository for Machine Learning Especialization projects in Holberton School.
 - Unless otherwise noted, you are not allowed to import any module
 - All your files must be executable
 - The length of your files will be tested using wc
+
+# More Info
+
+### *Installing Ubuntu 16.04 and Python 3.5*
+
+Follow the instructions listed in Using Vagrant on your personal computer, with the caveat that you should be using ubuntu/xenial64 instead of ubuntu/trusty64.
+
+Python 3.5 comes pre-installed on Ubuntu 16.04. How convenient! You can confirm this with python3 -V
+
+### *Installing pip 19.1*
+```
+wget https://bootstrap.pypa.io/get-pip.py
+sudo python3 get-pip.py
+rm get-pip.py
+```
+To check that pip has been successfully downloaded, use pip -V. Your output should look like:
+```
+$ pip -V
+pip 19.1.1 from /usr/local/lib/python3.5/dist-packages/pip (python 3.5)
+```
+
+### *Installing numpy 1.15, scipy 1.3, and pycodestyle 2.5*
+```
+$ pip install --user numpy==1.15
+$ pip install --user scipy==1.3
+$ pip install --user pycodestyle==2.5
+```
+To check that all have been successfully downloaded, use `pip list`.
+# **Authors**
+
+Diego Gómez - [Linkedin](https://www.linkedin.com/in/diegogomez8/) - [Twitter](https://twitter.com/dagomez2530)
