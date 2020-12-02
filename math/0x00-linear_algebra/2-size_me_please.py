@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
+"""Shape of a matrix"""
 
 
 def matrix_shape(matrix):
     """
     matrix: matrix to calcuted the shape
-    Return: A list with the matrix shape [n, m], n is the number of rows and m number of columns
+    Return: A list with the matrix shape [n, m],
+    n is the number of rows and m number of columns
     """
     lista = []
     if type(matrix) == list:
