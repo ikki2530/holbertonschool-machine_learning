@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""add 2 arrays"""
+
 
 def add_arrays(arr1, arr2):
     """
