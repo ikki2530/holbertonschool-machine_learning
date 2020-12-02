@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
+"""Add 2 matricess"""
+
 
 def matrix_shape(matrix):
     """
     matrix: matrix to calcuted the shape
-    Return: A list with the matrix shape [n, m], n is the number of rows and m number of columns
+    Return: A list with the matrix shape [n, m],
+    n is the number of rows and m number of columns
     """
     lista = []
     if type(matrix) == list:
@@ -13,6 +16,7 @@ def matrix_shape(matrix):
         return lista
     else:
         return lista
+
 
 def add_matrices2D(mat1, mat2):
     """
@@ -25,7 +29,6 @@ def add_matrices2D(mat1, mat2):
     cols = []
     mat = []
     if shape1 == shape2:
-        #print("identical lists", shape1, shape2)
         for i in range(len(mat1)):
             for j in range(len(mat1[0])):
                 cols.append(mat1[i][j] + mat2[i][j])
@@ -33,5 +36,4 @@ def add_matrices2D(mat1, mat2):
             cols = []
         return mat
     else:
-        #print("No identical", shape1, shape2)
         return None

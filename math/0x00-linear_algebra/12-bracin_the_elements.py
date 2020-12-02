@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Operations of ndarrays"""
 
 
 def np_elementwise(mat1, mat2):

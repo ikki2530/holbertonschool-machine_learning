@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Matrix multiplication (ndarrays)"""
 import numpy as np
 
 

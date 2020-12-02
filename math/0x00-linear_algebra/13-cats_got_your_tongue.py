@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Concats 2 matrices"""
 import numpy as np
 
 
