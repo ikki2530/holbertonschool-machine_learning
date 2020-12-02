@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""multiply 2 matrices"""
 
 
 def matrix_shape(matrix):
