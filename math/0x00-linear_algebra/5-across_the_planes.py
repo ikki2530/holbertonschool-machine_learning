@@ -28,10 +28,17 @@ def add_matrices2D(mat1, mat2):
     shape2 = matrix_shape(mat2)
     cols = []
     mat = []
+    m1 = []
+    m2 = []
+    for row in mat1:
+        m1.append(row.copy())
+    for row in mat2:
+        m2.append(row.copy())
+
     if shape1 == shape2:
-        for i in range(len(mat1)):
-            for j in range(len(mat1[0])):
-                cols.append(mat1[i][j] + mat2[i][j])
+        for i in range(len(m1)):
+            for j in range(len(m1[0])):
+                cols.append(m1[i][j] + m2[i][j])
             mat.append(cols)
             cols = []
         return mat
