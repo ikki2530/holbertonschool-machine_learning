@@ -59,6 +59,7 @@ Basic concepts about linear algebra: Vectors/Arrays, dot product, transpose of a
 
 [14-saddle_up.py](14-saddle_up.py) - performs matrix multiplication
 
+[100-slice_like_a_ninja.py](100-slice_like_a_ninja.py) - slices a matrix along specific axes
 
 ## Authors
 * Diego Gomez- [Linkedin](https://www.linkedin.com/in/diego-g%C3%B3mez-8861b61a1/) / [Twitter](https://twitter.com/dagomez2530)
