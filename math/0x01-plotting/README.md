@@ -40,6 +40,7 @@ Basic concepts about matplotlib: histograms, scatter plots, bar chart, linear ch
 
 [6-bars.py](6-bars.py) - Stacked bar graph
 
+[100-gradient.py](100-gradient.py) - Scatter plot of sampled elevations on a mountain
 
 ## Authors
 * Diego Gomez- [Linkedin](https://www.linkedin.com/in/diego-g%C3%B3mez-8861b61a1/) / [Twitter](https://twitter.com/dagomez2530)
