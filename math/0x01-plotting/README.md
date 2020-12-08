@@ -42,5 +42,7 @@ Basic concepts about matplotlib: histograms, scatter plots, bar chart, linear ch
 
 [100-gradient.py](100-gradient.py) - Scatter plot of sampled elevations on a mountain
 
+[101-pca.py](101-pca.py) - Principle Component Analysis (PCA) is a vital procedure used in data science for reducing the dimensionality of data (in turn, decreasing computation cost). It is also largely used for visualizing high dimensional data in 2 or 3 dimensions.
+
 ## Authors
 * Diego Gomez- [Linkedin](https://www.linkedin.com/in/diego-g%C3%B3mez-8861b61a1/) / [Twitter](https://twitter.com/dagomez2530)
