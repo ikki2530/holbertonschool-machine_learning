@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Calculates i squared"""
-import numpy as np
 
 
 def summation_i_squared(n):
@@ -10,9 +9,10 @@ def summation_i_squared(n):
     Returns: sum the n square numbers
     """
     suma = 0
-    if type(n) == int and n >= 1:
-        nums = np.arange(1, n+1)
-        suma = np.dot(nums.T, nums)
+    if (type(n) == int or type(n) == float) and n >= 1:
+        suma = ((n ** 3) / 3) + ((n ** 2)/2) + (n/6)
+        if suma % 1 == 0:
+            suma = int(suma)
     else:
         return None
     return suma
