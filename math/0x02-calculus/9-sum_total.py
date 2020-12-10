@@ -10,7 +10,7 @@ def summation_i_squared(n):
     Returns: sum the n square numbers
     """
     suma = 0
-    if type(n) == int:
+    if type(n) == int and n >= 0:
         nums = np.arange(1, n+1)
         suma = np.dot(nums.T, nums)
     else:
