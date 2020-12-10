@@ -14,10 +14,24 @@ def poly_integral(poly, C=0):
         lg = len(poly)
         new_coef = []
         new_coef.append(C)
+        ceros = False
+        index = 0
+        for i in range(lg):
+            if poly[i] == 0:
+                ceros = True
+            else:
+                ceros = False
+                index = i
 
+        if ceros:
+            poly = poly[0:index + 1]
+            lg = len(poly)
+        print(ceros, index)
         for i in range(lg):
             if type(poly[i]) != int and type(poly[i]) != float:
                 return None
+            if i == 0 and poly[i] == 0:
+                print("cero en primera")
             coef = poly[i]
             grade = i
             new_coef.append(coef/(grade + 1))
