@@ -9,7 +9,7 @@ def summation_i_squared(n):
     Returns: sum the n square numbers
     """
     suma = 0
-    if (type(n) == int or type(n) == float) and n >= 1:
+    if (type(n) == int or type(n) == float) and n >= 0:
         suma = ((n ** 3) / 3) + ((n ** 2)/2) + (n/6)
         if suma % 1 == 0:
             suma = int(suma)
