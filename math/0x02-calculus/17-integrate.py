@@ -16,6 +16,8 @@ def poly_integral(poly, C=0):
         new_coef.append(C)
 
         for i in range(lg):
+            if type(poly[i]) not in (int, float):
+                return None
             coef = poly[i]
             grade = i
             new_coef.append(coef/(grade + 1))
