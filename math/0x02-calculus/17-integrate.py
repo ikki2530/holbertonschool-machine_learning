@@ -10,12 +10,13 @@ def poly_integral(poly, C=0):
     - Returns: new list of coefficients representing the integral
     of the polynomial
     """
-    if poly and type(poly) == list:
+    if poly and type(poly) == list and type(C) in (float, int):
         lg = len(poly)
         new_coef = []
-        new_coef.append(C)
-        if new_coef[0] % 1 == 0 and type(new_coef[0]) == float:
-            new_coef[0] == int(new_coef[0])
+        if C % 1 == 0 and type(C) == float:
+            new_coef.append(int(C))
+        else:
+            new_coef.append(C)
         for i in range(lg):
             coef = poly[i]
             grade = i
