@@ -16,6 +16,8 @@ def poly_integral(poly, C=0):
         new_coef.append(C)
         ceros = False
         index = 0
+        if lg == 1 and poly[0] == 0:
+            return None
         for i in range(lg):
             if poly[i] == 0:
                 ceros = True
