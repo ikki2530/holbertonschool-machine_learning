@@ -10,7 +10,7 @@ def poly_integral(poly, C=0):
     - Returns: new list of coefficients representing the integral
     of the polynomial
     """
-    if poly and type(poly) == list and type(C) in (float, int):
+    if poly and type(poly) == list:
         lg = len(poly)
         new_coef = []
         new_coef.append(C)
