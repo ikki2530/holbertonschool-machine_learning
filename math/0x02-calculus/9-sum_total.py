@@ -9,7 +9,7 @@ def summation_i_squared(n):
     Returns: sum the n square numbers
     """
     suma = 0
-    if n.isnumeric() and n >= 1:
+    if n >= 1:
         suma = n*(n + 1)*(2*n + 1) / 6
         if suma % 1 == 0:
             suma = int(suma)
