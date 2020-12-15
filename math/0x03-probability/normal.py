@@ -24,4 +24,4 @@ class Normal():
             std = 0
             for i in range(len(data)):
                 std += (data[i] - self.mean) ** 2
-            self.stddev = std / len(data)
+            self.stddev = (std / len(data)) ** 0.5
