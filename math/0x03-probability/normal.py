@@ -3,7 +3,7 @@
 
 
 class Normal():
-
+    """Normal distribution"""
     def __init__(self, data=None, mean=0., stddev=1.):
         """
         data: is a list of the data to be used to estimate the distribution
