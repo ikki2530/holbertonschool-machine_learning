@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Initialize Poisson"""
+from math import exp
 
 
 class Poisson():
@@ -26,3 +27,18 @@ class Poisson():
             for i in range(c):
                 suma += data[i]
             self.lambtha = suma / c
+
+    def pmf(self, k):
+        """
+        pmf instance method
+        k: is the number of “successes”
+        returns: CDF value for k
+        """
+        if type(k) not in (int, float):
+            k = int(k)
+        if k < 0:
+            return 0
+        fact = 1
+        for i in range(1, k + 1):
+            fact = i * fact
+        return (self.lambtha ** k) * exp(- self.lambtha) / fact
