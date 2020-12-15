@@ -43,6 +43,9 @@ class Poisson():
 
 
 def factorial(k):
+    """
+    Calculates the factorial of a number
+    """
     if k == 0:
         return 1
     fact = k * factorial(k - 1)
