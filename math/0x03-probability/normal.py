@@ -25,3 +25,21 @@ class Normal():
             for i in range(len(data)):
                 std += (data[i] - self.mean) ** 2
             self.stddev = (std / len(data)) ** 0.5
+
+    def z_score(self, x):
+        """
+        Calculates the z-score of a given x-value
+        x: is the x-value
+        Returns the z-score of x
+        """
+        z = (x - self.mean) / self.stddev
+        return z
+
+    def x_value(self, z):
+        """
+        Calculates the x-value of a given z-score
+        z is the z-score
+        Returns the x-value of z
+        """
+        x = self.stddev * z + self.mean
+        return x
