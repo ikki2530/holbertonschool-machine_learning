@@ -33,7 +33,7 @@ class Poisson():
         k: is the number of “successes”
         returns: CDF value for k
         """
-        if type(k) not in (int, float):
+        if type(k) != int:
             k = int(k)
         if k < 0:
             return 0
