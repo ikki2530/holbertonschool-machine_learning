@@ -41,6 +41,20 @@ class Poisson():
         val_pmf = (self.lambtha ** k) * (e ** (-1 * self.lambtha))/fact
         return val_pmf
 
+    def cdf(self, k):
+        """
+        Calculates cdf of Poisson distribution
+        k: is the number of “successes”
+        Returns: CDF of k
+        """
+        suma = 0
+        k = int(k)
+        if k < 0:
+            return 0
+        for i in range(k+1):
+            suma += self.pmf(i)
+        return suma
+
 
 def factorial(k):
     """
