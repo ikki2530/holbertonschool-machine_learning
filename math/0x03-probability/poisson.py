@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Initialize Poisson"""
-from math import exp
 
 
 class Poisson():
@@ -41,4 +40,5 @@ class Poisson():
         fact = 1
         for i in range(1, k + 1):
             fact = i * fact
-        return (self.lambtha ** k) * exp(- self.lambtha) / fact
+        e = 2.7182818284590452353602874
+        return (self.lambtha ** k) * (e**(- self.lambtha)) / fact
