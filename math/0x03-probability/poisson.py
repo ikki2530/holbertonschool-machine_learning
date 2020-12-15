@@ -33,11 +33,17 @@ class Poisson():
         k: is the number of “successes”
         returns: CDF value for k
         """
-        k = int(k)
         if k < 0:
             return 0
-        fact = 1
-        for i in range(1, k + 1):
-            fact = i * fact
+        k = int(k)
+        fact = factorial(k)
         e = 2.7182818284590452353602874
-        return (self.lambtha ** k) * (e**(- self.lambtha)) / fact
+        val_pmf = pow(self.lambtha, k) * pow(e, -1 * self.lambtha)/fact
+        return val_pmf
+
+
+def factorial(k):
+    if k == 0:
+        return 1
+    fact = k * factorial(k - 1)
+    return fact
