@@ -31,8 +31,6 @@ class Exponential():
         """
         if x < 0:
             return 0
-        if x == 0:
-            return 0
         e = 2.7182818284590452353602874
         exp_pdf = self.lambtha * (e ** (-1 * self.lambtha * x))
         return exp_pdf
