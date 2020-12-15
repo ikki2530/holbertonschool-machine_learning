@@ -55,3 +55,14 @@ class Normal():
         normal_pdf = (e ** (-0.5 * ((x - self.mean)/self.stddev)**2))/(
                       self.stddev * (2 * pi) ** 0.5)
         return normal_pdf
+
+    def cdf(self, x):
+        """
+        Calculates the value of the CDF for a given x-value
+        x is the x-value
+        Returns the CDF value for x
+        """
+        suma = 0
+        for i in range(x+1):
+            suma += self.pdf(i)
+        return suma
