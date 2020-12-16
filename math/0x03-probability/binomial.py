@@ -26,8 +26,30 @@ class Binomial():
             mean = sum(data) / len(data)  # mean = n*p
             var = sum([(data[x] - mean) ** 2 for x in range(len(data))]
                       ) / len(data)
-            self.p = float(1 - (var / mean))
+            self.p = (1 - (var / mean))
             n = mean / self.p
             self.n = int(round(n))
             # after round n, must recalculate new p
             self.p = mean / self.n
+
+    def pmf(self, k):
+        """
+        Calculates the value of the PMF for a given number of “successes”
+        k is the number of “successes”
+        Returns the PMF value for k
+        """
+        k = int(k)
+        if k < 0:
+            return 0
+
+        comb = factorial(self.n) / (factorial(k) * factorial(self.n - k))
+        bin_pdf = comb * (self.p ** k) * ((1 - self.p) ** (self.n - k))
+        return bin_pdf
+
+
+def factorial(k):
+    """calculates the factorial of k"""
+    if k == 0:
+        return 1
+    fact = k * factorial(k - 1)
+    return fact
