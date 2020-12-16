@@ -62,7 +62,9 @@ class Normal():
         x is the x-value
         Returns the CDF value for x
         """
-        suma = 0
-        for i in range(x+1):
-            suma += self.pdf(i)
-        return suma
+        pi = 3.1415926535897932384626
+        z = (x - self.mean) / (self.stddev * (2 ** 0.5))
+        erf = (2/(pi)**0.5) * (z - ((z**3)/3) + (
+              (z**5)/10) - ((z**7)/42) + ((z**9)/216))
+        q = 0.5 * (1 + erf)
+        return q
