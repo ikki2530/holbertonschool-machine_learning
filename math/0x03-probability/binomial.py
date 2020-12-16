@@ -14,7 +14,7 @@ class Binomial():
         if data is None:
             if n < 0:
                 raise ValueError("n must be a positive value")
-            if p < 0 or p > 1:
+            if p <= 0 or p >= 1:
                 raise ValueError("p must be greater than 0 and less than 1")
             self.n = int(n)
             self.p = float(p)
@@ -28,7 +28,8 @@ class Binomial():
             for i in range(len(data)):
                 std += (data[i] - mean) ** 2
             var = (std / len(data))
-            self.p = 1 - (var / mean)
-            self.n = mean / self.p
-            # self.p = round(self.p, 5)
-            self.n = int(round(self.n))
+            self.p = float(1 - (var / mean))
+            n = mean / self.p
+            self.n = int(round(n))
+            # after round n, must recalculate new p
+            self.p = mean / self.n
