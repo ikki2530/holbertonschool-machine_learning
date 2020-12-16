@@ -7,7 +7,7 @@
 * [Authors](#authors)
 
 ## Description
-Basic concepts about Probability: Union, Intersection, variance, mean, probability distributions, etc.
+Concepts about Probability: Union, Intersection, variance, mean, probability distributions, etc.
 
 
 ## Learning Objectives
