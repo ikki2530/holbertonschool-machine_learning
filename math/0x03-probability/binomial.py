@@ -46,6 +46,20 @@ class Binomial():
         bin_pdf = comb * (self.p ** k) * ((1 - self.p) ** (self.n - k))
         return bin_pdf
 
+    def cdf(self, k):
+        """
+        Calculates the value of the CDF for a given number of “successes”
+        k is the number of “successes”
+        Returns the CDF value for k
+        """
+        k = int(k)
+        if k < 0:
+            return 0
+        cumulative = 0
+        for i in range(k + 1):
+            cumulative += self.pmf(i)
+        return cumulative
+
 
 def factorial(k):
     """calculates the factorial of k"""
