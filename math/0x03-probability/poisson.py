@@ -38,7 +38,7 @@ class Poisson():
         k = int(k)
         fact = factorial(k)
         e = 2.7182818284590452353602874
-        val_pmf = (self.lambtha ** k) * (e ** (-1 * self.lambtha))/factorial(k)
+        val_pmf = ((self.lambtha ** k) * (e ** (-1 * self.lambtha)))/factorial(k)
         return val_pmf
 
     def cdf(self, k):
