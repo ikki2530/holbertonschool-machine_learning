@@ -24,10 +24,8 @@ class Binomial():
             if len(data) < 2:
                 ValueError("data must contain multiple values")
             mean = sum(data) / len(data)  # mean = n*p
-            std = 0
-            for i in range(len(data)):
-                std += (data[i] - mean) ** 2
-            var = (std / len(data))
+            var = sum([(data[x] - mean) ** 2 for x in range(len(data))]
+                      ) / len(data)
             self.p = float(1 - (var / mean))
             n = mean / self.p
             self.n = int(round(n))
