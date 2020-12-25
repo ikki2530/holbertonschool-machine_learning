@@ -9,7 +9,7 @@ class Neuron():
     def __init__(self, nx):
         """
         Initialize the Neuron class objects
-        nx: is the number of input features to the neuron 
+        nx: is the number of input features to the neuron
         """
         if type(nx) != int:
             raise TypeError("nx must be an integer")

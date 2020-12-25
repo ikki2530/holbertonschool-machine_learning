@@ -9,7 +9,7 @@ class Neuron():
     def __init__(self, nx):
         """
         Initialize a privatize Neuron class object
-        nx: is the number of input features to the neuron 
+        nx: is the number of input features to the neuron
         """
         if type(nx) != int:
             raise TypeError("nx must be an integer")
@@ -18,7 +18,7 @@ class Neuron():
         self.__W = np.random.normal(size=nx).reshape((1, nx))
         self.__b = 0
         self.__A = 0
-    
+
     @property
     def W(self):
         """ Get the W
@@ -34,7 +34,7 @@ class Neuron():
             bias
         """
         return self.__b
- 
+
     @property
     def A(self):
         """ Get the A activation function

@@ -46,9 +46,37 @@ class Neuron():
         """
         defines a single neuron performing binary classification.
         X: is a numpy.ndarray with shape (nx, m) that contains the input data.
-        Returns: A matrix with the values activated by sigmoid function
+        Returns: A matrix with the values activated by sigmoid function (1, m)
         """
         # W (1, nx), X (nx, m), b (1, 1)
         z = self.__W @ X + self.__b
         self.__A = 1 / (1 + np.exp(-1 * z))
         return self.__A
+
+    def cost(self, Y, A):
+        """
+        - Calculates the cost of the model using logistic regression.
+        - Y is a numpy.ndarray with shape (1, m) that contains the
+        correct labels for the input data.
+        - A is a numpy.ndarray with shape (1, m) containing
+        the activated output of the neuron for each example.
+        Returns the cost.
+        """
+        cost = -1 * np.sum(((Y * np.log(A)) + ((1 - Y) * np.log(
+                1.0000001 - A))))
+        cost = cost / Y.shape[1]
+        return cost
+
+    def evaluate(self, X, Y):
+        """
+        - Evaluates the neuron’s predictions.
+        - X is a numpy.ndarray with shape (nx, m) that contains the input data,
+        where nx is the number of input features to the neuron and m is the
+        number of examples.
+        - Y is a numpy.ndarray with shape (1, m) that contains the correct
+        labels for the input data.
+        """
+        A = self.forward_prop(X)
+        cost = self.cost(Y, A)
+        A = np.where(A >= 0.5, 1, 0)  # if A >= 1 then 1, 0 otherwise
+        return A, cost
