@@ -179,6 +179,6 @@ class NeuralNetwork():
         for epoc in range(iterations):
             self.__A1, self.__A2 = self.forward_prop(X)
             # alpha = 0.5 give us better results than 0.05
-            self.gradient_descent(X, Y, self.__A1, self.__A2)
+            self.gradient_descent(X, Y, self.__A1, self.__A2, alpha)
         A, c = self.evaluate(X, Y)
         return A, c
