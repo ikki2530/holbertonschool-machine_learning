@@ -12,5 +12,8 @@ def one_hot_encode(Y, classes):
     - Returns: a one-hot encoding of Y with shape (classes, m)
     or None on failure.
     """
-    b = np.eye(classes)[Y].T
+    b = None
+    if Y:
+        b = np.eye(classes)[Y].T
+
     return b
