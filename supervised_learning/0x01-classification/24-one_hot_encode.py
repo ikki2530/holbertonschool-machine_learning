@@ -22,5 +22,5 @@ def one_hot_encode(Y, classes):
     # one_hot = np.zeros(shap)
     # rows = np.arange(len(Y))
     # one_hot[rows, Y] = 1
-    b = np.eye(classes)[Y]
+    b = np.eye(classes)[Y].T
     return b
