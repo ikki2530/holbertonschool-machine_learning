@@ -13,7 +13,7 @@ def one_hot_encode(Y, classes):
     or None on failure.
     """
     b = None
-    if Y.size != 0:
+    if Y.size != 0 and classes <= Y.size:
         b = np.eye(classes)[Y].T
 
     return b
