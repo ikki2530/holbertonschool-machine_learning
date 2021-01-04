@@ -143,15 +143,15 @@ class DeepNeuralNetwork():
         """
         if type(iterations) != int:
             raise TypeError("iterations must be an integer")
-        if iterations < 0:
+        if iterations <= 0:
             raise ValueError("terations must be a positive integer")
         if type(alpha) != float:
             raise TypeError("alpha must be a float")
-        if alpha < 0.0:
+        if alpha <= 0.0:
             raise ValueError("alpha must be positive")
 
         for epoc in range(iterations):
-            A, self.__cache = self.forward_prop(X)
+            self.forward_prop(X)
             self.gradient_descent(Y, self.__cache, alpha)
         A, cost = self.evaluate(X, Y)
         return A, cost
