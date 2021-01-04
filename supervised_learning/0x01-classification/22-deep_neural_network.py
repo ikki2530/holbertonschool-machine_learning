@@ -141,16 +141,17 @@ class DeepNeuralNetwork():
         - iterations is the number of iterations to train over.
         - alpha is the learning rate.
         """
-        if type(iterations) != int:
+        if not isinstance(iterations, int):
             raise TypeError("iterations must be an integer")
         if iterations <= 0:
-            raise ValueError("terations must be a positive integer")
-        if type(alpha) != float:
+            raise ValueError("iterations must be a positive integer")
+        if not isinstance(alpha, float):
             raise TypeError("alpha must be a float")
         if alpha <= 0:
             raise ValueError("alpha must be positive")
 
-        for epoc in range(iterations):
+        for i in range(0, iterations):
             self.forward_prop(X)
-            self.gradient_descent(Y, self.__cache, alpha)
+            self.gradient_descent(Y, self.cache, alpha)
+
         return self.evaluate(X, Y)
