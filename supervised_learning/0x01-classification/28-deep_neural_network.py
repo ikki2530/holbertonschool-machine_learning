@@ -155,8 +155,12 @@ class DeepNeuralNetwork():
             if i == self.__L:
                 dz = A - Y
             else:
-                g = A * (1 - A)
-                dz = (weights_c["W" + str(i + 1)].T @ dz) * g
+                if self.__activation == "sig":
+                    g = A * (1 - A)
+                    dz = (weights_c["W" + str(i + 1)].T @ dz) * g
+                elif self.__activation == "tanh":
+                    g = 1 - (A ** 2)
+                    dz = (weights_c["W" + str(i + 1)].T @ dz) * g
             dw = (dz @ cache["A" + str(i - 1)].T) / m
             db = np.sum(dz, axis=1, keepdims=True) / m
             # dz for next iteration
