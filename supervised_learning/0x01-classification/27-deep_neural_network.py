@@ -114,8 +114,9 @@ class DeepNeuralNetwork():
         """
         A, _ = self.forward_prop(X)
         cost = self.cost(Y, A)
-        # convert max = 1
+        # selects the max of each column, in a column vector
         Y_hat = np.max(A, axis=0)
+        # put 1 in the max of each column, 0 otherwise
         A = np.where(A == Y_hat, 1, 0)
         return A, cost
 
