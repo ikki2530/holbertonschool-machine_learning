@@ -18,9 +18,9 @@ def one_hot_encode(Y, classes):
     if (len(Y) == 0 or len(Y.shape) != 1 or classes != Y.max()+1 or
             classes <= np.amax(Y)):
         return None
-    # shap = (len(Y), classes)
-    # one_hot = np.zeros(shap)
-    # rows = np.arange(len(Y))
-    # one_hot[rows, Y] = 1
-    b = np.eye(classes)[Y].T
-    return b
+    shap = (len(Y), classes)
+    one_hot = np.zeros(shap)
+    rows = np.arange(len(Y))
+    one_hot[rows, Y] = 1
+    # b = np.eye(classes)[Y].T
+    return one_hot.T
