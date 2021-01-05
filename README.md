@@ -11,7 +11,9 @@
 Repository for Machine Learning Especialization projects in Holberton School.
 
 ### *Directories*
-[math](https://github.com/ikki2530/holbertonschool-machine_learning/tree/main/math) Essential maths for Machine Learning.
+[math](math) Essential maths for Machine Learning.
+
+[supervised_learning](supervised_learning) Basic topics for deep neural networks.
 
 # Requirements
 
