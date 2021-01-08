@@ -38,21 +38,16 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha,
     tf.add_to_collection('loss', loss)
     train_op = create_train_op(loss, alpha)
     tf.add_to_collection('train_op', train_op)
-
     init = tf.global_variables_initializer()
     saver = tf.train.Saver()
-
     with tf.Session() as sess:
         sess.run(init)
         for i in range(iterations + 1):
             cost_train, accuracy_train = sess.run(
-                [loss, accuracy],
-                feed_dict={x: X_train, y: Y_train})
+                [loss, accuracy], feed_dict={x: X_train, y: Y_train})
             cost_valid, accuracy_valid = sess.run(
-                [loss, accuracy],
-                feed_dict={x: X_valid, y: Y_valid})
-
-            if i % 100 == 0 or i + 1 == iterations:
+                [loss, accuracy], feed_dict={x: X_valid, y: Y_valid})
+            if i % 100 == 0 or i == iterations:
                 print("After {} iterations:".format(i))
                 print("\tTraining Cost: {}".format(cost_train))
                 print("\tTraining Accuracy: {}".format(accuracy_train))
@@ -61,5 +56,4 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha,
             if i < iterations:
                 sess.run(train_op, feed_dict={x: X_train, y: Y_train})
         save_path = saver.save(sess, save_path)
-
-    return save_path
+        return save_path
