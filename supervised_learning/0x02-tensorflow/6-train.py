@@ -26,10 +26,16 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha,
     """
     # arquitectura, sin datos
     x, y = create_placeholders(X_train.shape[1], Y_train.shape[1])
+    tf.add_to_collection('x', x)
+    tf.add_to_collection('y', y)
     y_pred = forward_prop(x, layer_sizes, activations)
+    tf.add_to_collection('y_pred', y_pred)
     accuracy = calculate_accuracy(y, y_pred)
+    tf.add_to_collection('accuracy', accuracy)
     loss = calculate_loss(y, y_pred)
+    tf.add_to_collection('loss', loss)
     train_op = create_train_op(loss, alpha)
+    tf.add_to_collection('train_op', train_op)
 
     # initializer, cuando no se inicializa las
     # matrices de peso esto inicia los valores
@@ -39,11 +45,11 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha,
         saver = tf.train.Saver()
         for i in range(iterations):
             # entrenamiento
-            _, accur_train, loss_value_train = sess.run((
-                train_op, accuracy, loss), feed_dict={x: X_train, y: Y_train})
+            accur_train, loss_value_train = sess.run((
+                accuracy, loss), feed_dict={x: X_train, y: Y_train})
             # validación
-            _, accur_val, loss_value_val = sess.run((
-                train_op, accuracy, loss), feed_dict={x: X_valid, y: Y_valid})
+            accur_val, loss_value_val = sess.run((
+                accuracy, loss), feed_dict={x: X_valid, y: Y_valid})
             if i % 100 == 0:
                 print("After {} iterations:".format(i))
                 print("\tTraining Cost: {}".format(loss_value_train))
