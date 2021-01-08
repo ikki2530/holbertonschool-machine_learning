@@ -37,25 +37,27 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha,
     train_op = create_train_op(loss, alpha)
     tf.add_to_collection('train_op', train_op)
 
-    # initializer, cuando no se inicializa las
-    # matrices de peso esto inicia los valores
     init = tf.global_variables_initializer()
+    saver = tf.train.Saver()
+
     with tf.Session() as sess:
         sess.run(init)
-        saver = tf.train.Saver()
-        for i in range(iterations):
-            # entrenamiento
-            accur_train, loss_value_train = sess.run((
-                accuracy, loss), feed_dict={x: X_train, y: Y_train})
-            # validación
-            accur_val, loss_value_val = sess.run((
-                accuracy, loss), feed_dict={x: X_valid, y: Y_valid})
-            if i % 100 == 0:
-                print("After {} iterations:".format(i))
-                print("\tTraining Cost: {}".format(loss_value_train))
-                print("\tTraining Accuracy: {}".format(accur_train))
-                print("\tValidation Cost: {}".format(loss_value_val))
-                print("\tValidation Accuracy: {}".format(accur_val))
+        for i in range(iterations + 1):
+            cost_train, accuracy_train = sess.run(
+                [loss, accuracy],
+                feed_dict={x: X_train, y: Y_train})
+            cost_valid, accuracy_valid = sess.run(
+                [loss, accuracy],
+                feed_dict={x: X_valid, y: Y_valid})
 
-        saver.save(sess, save_path)
+            if i % 100 == 0 or i + 1 == iterations:
+                print("After {} iterations:".format(i))
+                print("\tTraining Cost: {}".format(cost_train))
+                print("\tTraining Accuracy: {}".format(accuracy_train))
+                print("\tValidation Cost: {}".format(cost_valid))
+                print("\tValidation Accuracy: {}".format(accuracy_valid))
+            if i < iterations:
+                sess.run(train_op, feed_dict={x: X_train, y: Y_train})
+        save_path = saver.save(sess, save_path)
+
     return save_path
