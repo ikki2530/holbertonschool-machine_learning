@@ -2,7 +2,6 @@
 """
 Creates a batch normalization layer for a neural network in tensorflow
 """
-import numpy as np
 import tensorflow as tf
 
 
@@ -16,10 +15,8 @@ def create_batch_norm_layer(prev, n, activation):
     - you should use an epsilon of 1e-8.
     Returns: a tensor of the activated output for the layer
     """
-    n = prev.shape[1]
     w = tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")
-    model = tf.layers.Dense(units=n, kernel_initializer=w,
-                            activation=activation, name="layer")
+    model = tf.layers.Dense(units=n, kernel_initializer=w)
     z = model(prev)
 
     mean, variance = tf.nn.moments(z, [0])
