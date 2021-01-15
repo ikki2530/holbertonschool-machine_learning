@@ -15,14 +15,4 @@ def create_batch_norm_layer(prev, n, activation):
     - you should use an epsilon of 1e-8.
     Returns: a tensor of the activated output for the layer
     """
-    w = tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")
-    model = tf.layers.Dense(units=n, kernel_initializer=w)
-    z = model(prev)
 
-    mean, variance = tf.nn.moments(z, [0])
-    beta = tf.Variable(tf.zeros([z.get_shape()[-1]]))
-    gamma = tf.Variable(tf.ones([z.get_shape()[-1]]))
-
-    normed = tf.nn.batch_normalization(z, mean, variance, beta, gamma, 1e-8)
-    predic = activation(normed)
-    return predic
