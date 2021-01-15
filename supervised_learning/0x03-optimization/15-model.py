@@ -1,11 +1,64 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-builds, trains, and saves a neural network model in
-tensorflow using Adam optimization, mini-batch gradient descent,
-learning rate decay, and batch normalization.
+Function that shuffles the data points in two matrices the same way
 """
 import tensorflow as tf
 import numpy as np
+
+
+def shuffle_data(X, Y):
+    """
+    Function that shuffles the data points in two matrices the same way:
+    Arguments:
+     - X: is the first numpy.ndarray of shape (m, nx) to shuffle
+        * m is the number of data points
+        * nx is the number of features in X
+     - Y: is the second numpy.ndarray of shape (m, ny) to shuffle
+        * m is the same number of data points as in X
+        * ny is the number of features in Y
+    Returns:
+     The shuffled X and Y matrices
+    """
+    permutation = np.random.permutation(len(X))
+
+    shuffled_X = X[permutation]
+    shuffled_Y = Y[permutation]
+
+    return shuffled_X, shuffled_Y
+
+
+def create_placeholders(nx, classes):
+    """
+    Function to create the placeholders
+    Arguments:
+     - nx is the data
+     - classes is the classes for the data
+    Return:
+    Two placeholders for the NN
+    """
+    x = tf.placeholder('float', [None, nx], name='x')
+    y = tf.placeholder('float', [None, classes], name='y')
+
+    return x, y
+
+
+def create_layer(prev, n, activation):
+    """
+    Function that creates the layer
+    Arguments:
+     - prev: tensor output of the previus layer
+     - n: numer of nodes in the new layer
+     - activation: activation function to use
+    Return:
+     The new layer
+    """
+
+    init = tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")
+    layer = tf.layers.Dense(units=n, activation=activation,
+                            kernel_initializer=init, name='layer')
+
+    return layer(prev)
 
 
 def forward_prop(x, layer_sizes, activations, epsilon=1e-8):
@@ -30,128 +83,101 @@ def forward_prop(x, layer_sizes, activations, epsilon=1e-8):
     return layer
 
 
-def create_placeholders(nx, classes):
-    """
-    - Returns two placeholders, x and y,
-    for the neural network.
-    - nx: the number of feature columns in our data.
-    - classes: the number of classes in our classifier.
-    """
-    x1 = tf.placeholder("float", (None, nx), name="x")
-    y1 = tf.placeholder("float", (None, classes), name="y")
-
-    return x1, y1
-
-
-def create_layer(prev, n, activation):
-    """
-    - prev is the tensor output of the previous layer
-    - n is the number of nodes in the layer to create.
-    - activation is the activation function that the layer should use.
-    """
-    w = tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")
-    model = tf.layers.Dense(units=n, kernel_initializer=w,
-                            activation=activation, name="layer")
-    return model(prev)
-
-
-def shuffle_data(X, Y):
-    """
-    - Shuffles the data points in two matrices the same way.
-    - X is the first numpy.ndarray of shape (m, nx) to shuffle,
-    m is the number of data points and nx is the number of features in X.
-    - Y is the second numpy.ndarray of shape (m, ny) to shuffle,
-    m is the same number of data points as in X and ny is the number
-    of features in Y.
-    - Returns: the shuffled X and Y matrices.
-    """
-    shuff = np.random.permutation(X.shape[0])
-    X_s = X[shuff]
-    Y_s = Y[shuff]
-    return X_s, Y_s
-
-
 def calculate_accuracy(y, y_pred):
     """
-    - Calculates the accuracy of a prediction.
-    - y is a placeholder for the labels of the input data.
-    - y_pred is a tensor containing the network’s predictions
-    Returns: a tensor containing the decimal accuracy of the prediction.
+    Function that calculates the accuranvy of a prediction.
+    Arguments:
+     - y: is a placeholder for the labels of the input data.
+     - y_pred: is a tensor containing the network’s predictions.
+    Returns:
+    A tensor containing the decimal accuracy of the prediction.
     """
-    equality = tf.equal(tf.argmax(y, axis=1), tf.argmax(y_pred, axis=1))
-    accuracy = tf.math.reduce_mean(tf.cast(equality, tf.float32))
+    eq = tf.equal(tf.argmax(y, axis=1), tf.argmax(y_pred, axis=1))
+    accuracy = tf.reduce_mean(tf.cast(eq, tf.float32))
+
     return accuracy
 
 
 def calculate_loss(y, y_pred):
     """
-    - Calculates the softmax cross-entropy loss of a prediction.
-    - y is a placeholder for the labels of the input data.
-    - y_pred is a tensor containing the network’s predictions.
-    Returns: a tensor containing the loss of the prediction
+    Function that calculates the softmax cross.entropy loss of a prediction
+    Arguments:
+     - y:  is a placeholder for the labels of the input data
+     - y_pred: is a tensor containing the network’s predictions
+    Returns:
+    A tensor containing the loss of the prediction
     """
     loss = tf.losses.softmax_cross_entropy(onehot_labels=y, logits=y_pred)
+
     return loss
 
 
-def create_Adam_op(loss, alpha, beta1, beta2, epsilon):
+def create_Adam_op(loss, alpha, beta1, beta2, epsilon=1e-8):
     """
-    - Creates the training operation for a neural network
-    in tensorflow using the Adam optimization algorithm.
-    - loss is the loss of the network.
-    - alpha is the learning rate.
-    - beta1 is the weight used for the first moment.
-    - beta2 is the weight used for the second moment.
-    - epsilon is a small number to avoid division by zero.
-    Returns: the Adam optimization operation.
+    Function that creates the training operation for a NN in tensorflow
+    using the Adam optimization algorithm
+    Arguments:
+     - loss is the loss of the network
+     - alpha is the learning rate
+     - beta1 is the weight used for the first moment
+     - beta2 is the weight used for the second moment
+     - epsilon is a small number to avoid division by zero
+    Returns:
+    The Adam optimization operation
     """
-    optimizer = tf.train.AdamOptimizer(learning_rate=alpha,
-                                       beta1=beta1,
-                                       beta2=beta2,
-                                       epsilon=epsilon)
-    train = optimizer.minimize(loss)
-    return train
+
+    optimizer = tf.train.AdamOptimizer(learning_rate=alpha, beta1=beta1,
+                                       beta2=beta2, epsilon=epsilon)
+    optimized_adam = optimizer.minimize(loss)
+
+    return optimized_adam
 
 
 def create_batch_norm_layer(prev, n, activation, epsilon=1e-8):
     """
-    - Creates a batch normalization layer for a neural network in tensorflow.
-    - prev is the activated output of the previous layer.
-    - n is the number of nodes in the layer to be created.
-    - activation is the activation function that should
-    be used on the output of the layer.
-    - you should use an epsilon of 1e-8.
-    Returns: a tensor of the activated output for the layer
+    Function that creates a batch normalization layer for a NN in tensorflow:
+    Arguments:
+     - prev is the activated output of the previous layer
+     - n is the number of nodes in the layer to be created
+     - activation is the activation function that should be used on
+        the output of the layer
+    Returns:
+     A tensor of the activated output for the layer
     """
-    w = tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")
-    model = tf.layers.Dense(units=n, kernel_initializer=w)
-    z = model(prev)
 
-    gamma = tf.Variable(tf.ones((z.get_shape()[-1])))
-    beta = tf.Variable(tf.zeros((z.get_shape()[-1])))
+    init = tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")
+    layer = tf.layers.Dense(units=n, kernel_initializer=init)
 
-    m, v = tf.nn.moments(z, [0])
-    z_norm = tf.nn.batch_normalization(z, m, v, beta, gamma, epsilon)
+    z = layer(prev)
 
-    ypred = activation(z_norm)
-    return ypred
+    mt, vt = tf.nn.moments(z, [0])
+    beta = tf.Variable(tf.zeros([z.get_shape()[-1]]))
+    gamma = tf.Variable(tf.ones([z.get_shape()[-1]]))
+    zt = tf.nn.batch_normalization(z, mt, vt, beta, gamma, epsilon)
+    y_pred = activation(zt)
+
+    return y_pred
 
 
 def learning_rate_decay(alpha, decay_rate, global_step, decay_step):
     """
-    - Creates a learning rate decay operation in tensorflow using
-    inverse time decay.
-    - alpha is the original learning rate.
-    - decay_rate is the weight used to determine the rate at which
-    alpha will decay.
-    - global_step is the number of passes of gradient descent that
-    have elapsed.
-    - decay_step is the number of passes of gradient descent that
-    should occur before alpha is decayed further.
+    Function that creates a learning rate decay operation in tensorflow
+    using inverse time decay
+    Arguments:
+     - alpha is the original learning rate
+     - decay_rate is the weight used to determine the rate at which alpha
+        will decay
+     - global_step is the number of passes of gradient descent that
+        have elapsed
+     - decay_step is the number of passes of GD that should occur before
+        alpha is decayed further
+    Returns:
+     The learning rate decay operation
     """
-    # https://docs.w3cub.com/tensorflow~python/tf/train/inverse_time_decay
+
     decay = tf.train.inverse_time_decay(alpha, global_step, decay_step,
                                         decay_rate, staircase=True)
+
     return decay
 
 
@@ -175,33 +201,36 @@ def get_batch(t, batch_size):
     return batch_list
 
 
-def model(Data_train, Data_valid, layers, activations, alpha=0.001,
-          beta1=0.9, beta2=0.999, epsilon=1e-8, decay_rate=1,
-          batch_size=32, epochs=5, save_path='/tmp/model.ckpt'):
+def model(Data_train, Data_valid, layers, activations, alpha=0.001, beta1=0.9,
+          beta2=0.999, epsilon=1e-8, decay_rate=1, batch_size=32, epochs=5,
+          save_path='/tmp/model.ckpt'):
     """
-    - Builds, trains, and saves a neural network model in
-    tensorflow using Adam optimization, mini-batch gradient descent,
-    learning rate decay, and batch normalization.
-    - Data_train is a tuple containing the training inputs and
-    training labels, respectively.
-    - Data_valid is a tuple containing the validation inputs and
-    validation labels, respectively.
-    - layers is a list containing the number of nodes in each layer
-    of the network.
-    - activation is a list containing the activation functions
-    used for each layer of the network.
-    - alpha is the learning rate.
-    - beta1 is the weight for the first moment of Adam Optimization.
-    - beta2 is the weight for the second moment of Adam Optimization.
-    - epsilon is a small number used to avoid division by zero.
-    - decay_rate is the decay rate for inverse time decay of the
-    learning rate (the corresponding decay step should be 1.
-    - batch_size is the number of data points that should be in a mini-batch.
-    - epochs is the number of times the training should pass through the
-    whole dataset.
-    - save_path is the path where the model should be saved to.
-    Returns: the path where the model was saved.
+    Function that builds, trains, and saves a NN model in tensorflow using
+    Adam optimization, mini-batch gradient descent, learning rate decay,
+    and batch normalization:
+    Arguments:
+     - Data_train is a tuple containing the training inputs and training
+        labels, respectively
+     - Data_valid is a tuple containing the validation inputs and
+        validation labels, respectively
+     - layers is a list containing the number of nodes in each layer of
+        the network
+     - activation is a list containing the activation functions used
+        for each layer of the network
+     - alpha is the learning rate
+     - beta1 is the weight for the first moment of Adam Optimization
+     - beta2 is the weight for the second moment of Adam Optimization
+     - epsilon is a small number used to avoid division by zero
+     - decay_rate is the decay rate for inverse time decay of the
+        learning rate (the corresponding decay step should be 1)
+     - batch_size is the number of data points that should be in a mini-batch
+     - epochs is the number of times the training should pass through
+        the whole dataset
+     - save_path is the path where the model should be saved to
+    Returns:
+     The path where the model was saved
     """
+
     nx = Data_train[0].shape[1]
     classes = Data_train[1].shape[1]
 
