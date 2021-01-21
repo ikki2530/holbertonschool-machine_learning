@@ -22,6 +22,7 @@ def dropout_gradient_descent(Y, weights, cache, alpha, keep_prob, L):
     - The weights of the network should be updated in place
     """
     m = Y.shape[1]
+    da = 0
     weights_copy = weights.copy()
     for i in range(L, 0, -1):
         A = cache["A" + str(i)]
@@ -29,13 +30,14 @@ def dropout_gradient_descent(Y, weights, cache, alpha, keep_prob, L):
             dz = A - Y
         else:
             # tanh
-            d = np.random.rand(A.shape[0], A.shape[1])
-            d = np.where(d < keep_prob, 1, 0)
-            A = (A * d) / keep_prob
+            # d = np.random.rand(A.shape[0], A.shape[1])
+            # d = np.where(d < keep_prob, 1, 0)
+            # A = (A * d) / keep_prob
             g = 1 - (A ** 2)
-            dz = ((weights_copy["W" + str(i + 1)].T @ dz) * g)
+            dz = ((cache['D' + str(i)]) * g * da) / keep_prob
         dw = (dz @ cache["A" + str(i - 1)].T) / m
         db = np.sum(dz, axis=1, keepdims=True) / m
+        da = np.matmul(weights['W' + str(i)].T, dz)
         # dw is the backpropagation
         weights["W" + str(i)] = weights["W" + str(i)] - (alpha * (dw))
         weights["b" + str(i)] = weights["b" + str(i)] - (alpha * db)
