@@ -12,7 +12,7 @@ def optimize_model(network, alpha, beta1, beta2):
     with categorical crossentropy loss and accuracy metrics.
     """
     # https://keras.io/api/optimizers/
-    opt = keras.optimizers.Adam(lr=alpha, beta_1=beta1, beta_2=beta2)
+    opt = K.optimizers.Adam(lr=alpha, beta_1=beta1, beta_2=beta2)
     network.compile(loss='categorical_crossentropy', optimizer=opt,
                     metrics=['accuracy'])
     return None
