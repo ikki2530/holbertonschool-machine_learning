@@ -49,11 +49,11 @@ def train_model(network, data, labels, batch_size, epochs,
                                                patience=patience))
     if learning_rate_decay and validation_data:
         early.append(K.callbacks.LearningRateScheduler(scheduler, verbose=1))
-    # checkpoint
-    mcp_save = K.callbacks.ModelCheckpoint(filepath=filepath,
+        # checkpoint
+        mcp_save = K.callbacks.ModelCheckpoint(filepath=filepath,
                                            monitor="val_loss",
                                            save_best_only=True)
-    early.append(mcp_save)
+        early.append(mcp_save)
     history = network.fit(x=data, y=labels, epochs=epochs,
                           batch_size=batch_size,
                           validation_data=validation_data,
