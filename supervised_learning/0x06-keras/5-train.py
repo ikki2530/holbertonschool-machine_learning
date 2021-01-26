@@ -23,7 +23,7 @@ def train_model(network, data, labels, batch_size, epochs,
     - shuffle is a boolean that determines whether to shuffle the batches
     every epoch.
     """
-    history = network.fit(data, labels, validation_data=validation_data,
+    history = network.fit(x=data, y=labels, validation_data=validation_data,
                           epochs=epochs, verbose=verbose,
                           batch_size=batch_size, shuffle=shuffle)
     return history
