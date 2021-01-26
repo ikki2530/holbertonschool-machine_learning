@@ -28,7 +28,8 @@ def train_model(network, data, labels, batch_size, epochs,
     every epoch.
     """
     early = None
-    if early_stopping and validation_data is not None:
+    if early_stopping and validation_data is not None and isinstance(
+       validation_data, tuple):
         early = K.callbacks.EarlyStopping(monitor="val_loss",
                                           patience=patience)
     history = network.fit(x=data, y=labels, epochs=epochs,
