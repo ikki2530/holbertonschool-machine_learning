@@ -27,13 +27,13 @@ def train_model(network, data, labels, batch_size, epochs,
     - shuffle is a boolean that determines whether to shuffle the batches
     every epoch.
     """
-    early = None
-    if early_stopping and validation_data is not None and isinstance(
-       validation_data, tuple):
-        early = K.callbacks.EarlyStopping(monitor="val_loss",
-                                          patience=patience)
+    early = []
+    if early_stopping and validation_data:
+        early.append(K.callbacks.EarlyStopping(monitor="val_loss",
+                                               patience=patience))
+
     history = network.fit(x=data, y=labels, epochs=epochs,
                           batch_size=batch_size,
                           validation_data=validation_data,
-                          shuffle=shuffle, verbose=verbose, callbacks=[early])
+                          shuffle=shuffle, verbose=verbose, callbacks=early)
     return history
