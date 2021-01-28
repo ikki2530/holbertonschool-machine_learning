@@ -3,7 +3,6 @@
 performs a same convolution on grayscale images
 """
 import numpy as np
-from math import ceil
 
 
 def convolve_grayscale_same(images, kernel):
@@ -20,8 +19,8 @@ def convolve_grayscale_same(images, kernel):
     """
     m, h, w = images.shape
     kh, kw = kernel.shape
-    height = int(ceil(float(h)))
-    width = int(ceil(float(w)))
+    height = h
+    width = w
 
     pad_along_height = max((height - 1) + kh - h, 0)
     pad_along_width = max((width - 1) + kw - w, 0)
