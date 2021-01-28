@@ -3,7 +3,7 @@
 performs a same convolution on grayscale images
 """
 import numpy as np
-from math import ceil, floor
+from math import ceil
 
 
 def convolve_grayscale_same(images, kernel):
