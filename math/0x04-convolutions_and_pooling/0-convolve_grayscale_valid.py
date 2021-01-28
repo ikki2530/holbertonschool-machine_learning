@@ -3,7 +3,7 @@
 Performs a valid convolution on grayscale images
 """
 import numpy as np
-from math import ceil, floor
+from math import ceil
 
 
 def convolve_grayscale_valid(images, kernel):
@@ -20,12 +20,12 @@ def convolve_grayscale_valid(images, kernel):
     # """
     m, h, w = images.shape
     kh, kw = kernel.shape
-    height = int(ceil(float(h - kh + 1) / 1))
-    width = int(ceil(float(w - kw + 1) / 1))
+    height = h - kh + 1
+    width = w - kw + 1
 
     output = np.zeros((m, height, width))
-    for x in range(width):
-        for y in range(height):
-            output[:, y, x] = (kernel * images[
-                               :, y*1:y*1 + kh, x*1:x*1 + kw]).sum()
+    for y in range(height):
+        for x in range(width):
+            output[:, y, x] = np.sum(kernel * images[
+                               :, y*1:y*1 + kh, x*1:x*1 + kw], axis=(1, 2))
     return output
