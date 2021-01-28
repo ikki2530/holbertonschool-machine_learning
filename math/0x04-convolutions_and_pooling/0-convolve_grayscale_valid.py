@@ -3,7 +3,6 @@
 Performs a valid convolution on grayscale images
 """
 import numpy as np
-from math import ceil
 
 
 def convolve_grayscale_valid(images, kernel):
