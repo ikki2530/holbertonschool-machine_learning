@@ -3,7 +3,6 @@
 Performs a convolution on grayscale images
 """
 import numpy as np
-from math import floor
 
 
 def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
