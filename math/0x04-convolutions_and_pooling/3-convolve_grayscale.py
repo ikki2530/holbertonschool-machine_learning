@@ -40,8 +40,8 @@ def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
     image_padded = np.pad(images, ((0, 0), (ph, ph), (pw, pw)))
 
     # new dimensions
-    zh = int(floor(((h + (2*ph) - kh) / sh) + 1))
-    zw = int(floor(((w + (2*pw) - kw) / sw) + 1))
+    zh = int(((h + (2*ph) - kh) / sh) + 1)
+    zw = int(((w + (2*pw) - kw) / sw) + 1)
     output = np.zeros((m, zh, zw))
 
     for y in range(zh):
