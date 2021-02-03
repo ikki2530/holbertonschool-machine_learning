@@ -31,8 +31,8 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
     kh, kw, c_prev, c_new = W.shape
     sh, sw = stride
     if padding == "same":
-        ph = int(((h_prev - 1)*sh + kh - h_prev) / 2) + 1
-        pw = int(((w_prev - 1)*sw + kw - w_prev) / 2) + 1
+        ph = int(((h_prev - 1)*sh + kh - h_prev) / 2)
+        pw = int(((w_prev - 1)*sw + kw - w_prev) / 2)
 
     if padding == "valid":
         ph = 0
@@ -56,7 +56,7 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
                                         horiz_start:horiz_end, :]
                 # Element-wise product between a_slice and W.
                 # Do not add the bias yet.
-                prev_s = np.multiply(a_slice_prev, W[:, :, :, k])
+                prev_s = a_slice_prev * W[:, :, :, k]
                 # Sum over all entries of the volume prev_s.
                 sum_z = np.sum(prev_s, axis=(1, 2, 3))
                 z1 = sum_z + b[:, :, :, k]
