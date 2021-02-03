@@ -53,7 +53,7 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
                 horiz_end = (x * sw) + kw
 
                 a_slice_prev = A_padded[:, vert_start:vert_end,
-                                        horiz_start:horiz_end]
+                                        horiz_start:horiz_end, :]
                 # Element-wise product between a_slice and W.
                 # Do not add the bias yet.
                 prev_s = np.multiply(a_slice_prev, W[:, :, :, k])
