@@ -33,20 +33,19 @@ def pool_forward(A_prev, kernel_shape, stride=(1, 1), mode='max'):
 
     A = np.zeros((m, zh, zw, c_prev))
 
-    for i in range(m):
-        for y in range(zh):
-            for x in range(zw):
-                for k in range(c_prev):
-                    vert_start = y * sh
-                    vert_end = (y * sh) + kh
-                    horiz_start = x * sw
-                    horiz_end = (x * sw) + kw
-                    a_slice_prev = A_prev[i, vert_start:vert_end,
-                                          horiz_start:horiz_end, k]
-                    if mode == "max":
-                        A[i, y, x, k] = np.max(a_slice_prev)
-                    elif mode == "average":
-                        A[i, y, x, k] = np.mean(a_slice_prev)
+    for y in range(zh):
+        for x in range(zw):
+            for k in range(c_prev):
+                vert_start = y * sh
+                vert_end = (y * sh) + kh
+                horiz_start = x * sw
+                horiz_end = (x * sw) + kw
+                a_slice_prev = A_prev[:, vert_start:vert_end,
+                                      horiz_start:horiz_end, k]
+                if mode == "max":
+                    A[:, y, x, k] = np.max(a_slice_prev, axis=(1, 2))
+                elif mode == "average":
+                    A[:, y, x, k] = np.mean(a_slice_prev, axis=(1, 2))
     # Making sure your output shape is correct
     # assert(A.shape == (m, zh, zw, c_prev))
     return A
