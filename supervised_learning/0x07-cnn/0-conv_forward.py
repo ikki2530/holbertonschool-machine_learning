@@ -61,5 +61,5 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
                 sum_z = np.sum(prev_s, axis=(1, 2, 3))
                 z1 = sum_z + b[:, :, :, k]
 
-                Z[:, y, x, k] = z1
+                Z[:, y, x, k] = activation(z1)
     return Z
