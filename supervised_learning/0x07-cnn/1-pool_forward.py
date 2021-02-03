@@ -45,7 +45,7 @@ def pool_forward(A_prev, kernel_shape, stride=(1, 1), mode='max'):
                 if mode == "max":
                     A[:, y, x, k] = np.max(a_slice_prev, axis=(1, 2))
                 elif mode == "average":
-                    A[:, y, x, k] = np.mean(a_slice_prev, axis=(1, 2))
+                    A[:, y, x, k] = np.average(a_slice_prev, axis=(1, 2))
     # Making sure your output shape is correct
     # assert(A.shape == (m, zh, zw, c_prev))
     return A
