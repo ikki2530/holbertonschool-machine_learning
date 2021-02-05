@@ -44,41 +44,20 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
     # Retrieve dimensions from dZ's shape
     m, h_new, w_new, c_new = dZ.shape
 
-    # Initialize dA_prev, dW, db with the correct shapes
-    dA_prev = np.zeros((m, h_prev, w_prev, c_prev))
-    dW = np.zeros((kh, kw, c_prev, c_new))
-    db = np.zeros((1, 1, 1, c_new))
-
-    # Pad A_prev and dA_prev
-    A_prev_pad = np.pad(A_prev, ((0, 0), (ph, ph), (pw, pw), (0, 0)))
-    dA_prev_pad = np.pad(dA_prev, ((0, 0), (ph, ph), (pw, pw), (0, 0)))
-
+    A_pad = np.pad(A_prev, ((0,), (ph,), (pw,), (0,)), mode='constant')
+    db = np.sum(dZ, axis=(0, 1, 2), keepdims=True)
+    dA = np.zeros(A_pad.shape)
+    dW = np.zeros(W.shape)
     for i in range(m):
-        # select ith trainning example from A_prev_pad and dA_prev_pad
-        a_prev_pad = A_prev_pad[i]
-        da_prev_pad = dA_prev_pad[i]
-
         for y in range(h_new):
             for x in range(w_new):
+                z = y * sh
+                w = x * sw
                 for k in range(c_new):
-                    vert_start = y
-                    vert_end = vert_start + kh
-                    horiz_start = x
-                    horiz_end = horiz_start + kw
-
-                    a_slice = a_prev_pad[vert_start:vert_end,
-                                         horiz_start:horiz_end, :]
-
-                    # Update gradients for the window and the
-                    # filter's parameters using the code formulas given above
-                    da_prev_pad[vert_start:vert_end, horiz_start:horiz_end,
-                                :] += W[:, :, :, k] * dZ[i, y, x, k]
-                    dW[:, :, :, k] += a_slice * dZ[i, y, x, k]
-                    db[:, :, :, k] += dZ[i, y, x, k]
-        # Set the ith training example's dA_prev to the unpaded da_prev_pad
-        dA_prev[i, :, :, :] = da_prev_pad
-
-    # Making sure your output shape is correct
-    # assert(dA_prev.shape == (m, h_prev, w_prev, c_prev))
-
-    return dA_prev, dW, db
+                    aux1 = dZ[i, y, x, k]
+                    aux2 = A_pad[i, z: z + kh, w: w + kw, :]
+                    dA[i, z: z + kh, w: w + kw, :] += aux1 * W[:, :, :, k]
+                    dW[:, :, :, k] += aux1 * aux2
+    if padding == 'same':
+        dA = dA[:, ph:-ph, pw:-pw, :]
+    return dA, dW, db
