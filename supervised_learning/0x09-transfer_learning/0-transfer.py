@@ -18,47 +18,68 @@ if __name__ == "__main__":
     """
     Trains a convolutional neural network to classify the CIFAR 10 dataset
     """
-    kernel_norm = K.initializers.he_normal()
-    input_tensor = K.Input(shape=(32, 32, 3))
-    (Xt, Yt), (X, Y) = K.datasets.cifar10.load_data()
-    X_p, Y_p = preprocess_data(Xt, Yt)
-    Xv_p, Yv_p = preprocess_data(X, Y)
-    # resize images to the image size upon which the network was pre-trained
-    new_size = K.layers.Lambda(lambda image: tf.image.resize(
-                               image, (224, 224)))(
-                               input_tensor)
+    CALLBACKS = []
+    MODEL_PATH = 'cifar10.h5'
+    optimizer = K.optimizers.Adam()
+
+    # load cifar 10
+    (x_train, y_train), (x_test, y_test) = K.datasets.cifar10.load_data()
+
+    # pre-procces data
+    x_train, y_train = preprocess_data(x_train, y_train)
+    x_test, y_test = preprocess_data(x_test, y_test)
+
+    # input tensor
+    inputs = K.Input(shape=(32, 32, 3))
+
+    # upscale layer
+    upscale = K.layers.Lambda(lambda x: tf.image.resize_image_with_pad(x,
+                              160, 160,
+                              method=tf.image.ResizeMethod.BILINEAR))(inputs)
+
+    # load base model
     base_model = K.applications.DenseNet121(include_top=False,
                                             weights='imagenet',
-                                            input_tensor=new_size,
-                                            input_shape=(224, 224, 3),
+                                            input_tensor=upscale,
+                                            input_shape=(160, 160, 3),
                                             pooling='max')
-    # make the weights and biases of the base model non-trainable
-    # by "freezing" each layer of the DenseNet201 network
-    base_model.trainable = False
-    # add more layers
-    # take output from base_model without last layer
-    output = base_model.output
-    flat = K.layers.Flatten()(output)
-    batch = K.layers.BatchNormalization()(flat)  # Normalize the flat output
-    dense = K.layers.Dense(256, activation="relu",
-                           kernel_initializer=kernel_norm)(batch)
-    drop = K.layers.Dropout(0.4)(dense)
-    batch1 = K.layers.BatchNormalization()(drop)  # avoid overfitting
-    dense1 = K.layers.Dense(128, activation="relu",
-                            kernel_initializer=kernel_norm)(batch1)
-    drop1 = K.layers.Dropout(0.4)(dense1)
-    batch2 = K.layers.BatchNormalization()(drop1)  # avoid overfitting
-    dense2 = K.layers.Dense(64, activation="relu",
-                            kernel_initializer=kernel_norm)(batch2)
-    drop2 = K.layers.Dropout(0.4)(dense2)
-    # output layer
-    out = K.layers.Dense(10, activation="softmax")(drop2)
-    callback = K.callbacks.ModelCheckpoint(filepath='cifar10.h5',
-                                           monitor='val_acc',
-                                           mode='max',
-                                           save_best_only=True)
-    model = K.models.Model(inputs=input_tensor, outputs=out)
-    model.compile(optimizer=K.optimizers.Adam(),
-                  loss='categorical_crossentropy', metrics=['accuracy'])
-    model.fit(x=X_p, y=Y_p, validation_data=(Xv_p, Yv_p), batch_size=128,
-              epochs=20, callbacks=[callback], verbose=1)
+
+    # add top layers
+    out = base_model.output
+    out = K.layers.Flatten()(out)
+    out = K.layers.BatchNormalization()(out)
+    out = K.layers.Dense(256, activation='relu')(out)
+    out = K.layers.Dropout(0.3)(out)
+    out = K.layers.BatchNormalization()(out)
+    out = K.layers.Dense(128, activation='relu')(out)
+    out = K.layers.Dropout(0.3)(out)
+    out = K.layers.BatchNormalization()(out)
+    out = K.layers.Dense(64, activation='relu')(out)
+    out = K.layers.Dropout(0.3)(out)
+    out = K.layers.Dense(10, activation='softmax')(out)
+
+    # callbacks
+    CALLBACKS.append(K.callbacks.ModelCheckpoint(filepath=MODEL_PATH,
+                                                 monitor='val_acc',
+                                                 save_best_only=True))
+
+    CALLBACKS.append(K.callbacks.EarlyStopping(monitor='val_acc',
+                                               verbose=1,
+                                               patience=5))
+
+    CALLBACKS.append(K.callbacks.TensorBoard(log_dir='logs'))
+
+    # model compile
+    model = K.models.Model(inputs=inputs, outputs=out)
+
+    model.compile(optimizer=optimizer,
+                  loss='categorical_crossentropy',
+                  metrics=['accuracy'])
+
+    # train
+    model.fit(x=x_train,
+              y=y_train,
+              batch_size=128,
+              epochs=20,
+              callbacks=CALLBACKS,
+              validation_data=(x_test, y_test))
