@@ -5,6 +5,7 @@ perform object detection
 import tensorflow.keras as K
 import numpy as np
 import glob
+import cv2 as cv
 
 
 class Yolo():
