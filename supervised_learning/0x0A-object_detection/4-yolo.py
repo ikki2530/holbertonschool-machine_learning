@@ -246,7 +246,6 @@ class Yolo():
             index_collect = index_collect + n
         return (box_predictions, p_box_classes, predicted_box_scores)
 
-
     @staticmethod
     def load_images(folder_path):
         """method to load image"""
@@ -256,6 +255,7 @@ class Yolo():
         for i in img_paths:
             images.append(cv.imread(i))
         return (images, img_paths)
+
 
 def sigmoid(x):
     """Sigmoid function."""
