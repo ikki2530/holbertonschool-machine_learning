@@ -7,7 +7,7 @@
 * [Authors](#authors)
 
 ## Description
-Review of basic concepts about Tensorflow
+Optimization algorithms for gradient descent.
 
 
 ## Learning Objectives
