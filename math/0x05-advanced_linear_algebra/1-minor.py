@@ -85,7 +85,7 @@ def minor(matrix):
         if len(row) != n:
             raise ValueError("matrix must be a square matrix")
 
-    if n == 1 and len(matrix[0]) == 1:
+    if n == 1:
         return [[1]]
 
     all_minors = []
