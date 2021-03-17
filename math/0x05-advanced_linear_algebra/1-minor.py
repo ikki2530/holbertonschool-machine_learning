@@ -78,9 +78,6 @@ def minor(matrix):
     if n == 0:
         raise TypeError("matrix must be a list of lists")
 
-    # if n == 1 and len(matrix[0]) == 0 and type(
-    #    matrix) == list and type(matrix[0]) == list:
-    #     return [[0]]
     for row in matrix:
         if type(row) != list:
             raise TypeError("matrix must be a list of lists")
@@ -88,8 +85,7 @@ def minor(matrix):
         if len(row) != n:
             raise ValueError("matrix must be a square matrix")
 
-    if n == 1 and len(matrix[0]) == 1 and type(
-       matrix) == list and type(matrix[0]) == list:
+    if n == 1 and len(matrix[0]) == 1:
         return [[1]]
 
     all_minors = []
@@ -108,7 +104,7 @@ def minor(matrix):
                 temp = []
             if newm:
                 # Add a new minor
-                all_minors.append(newm)
+                all_minors.append(newm.copy())
             newm = []
         if all_minors:
             row_minors.append(all_minors.copy())
