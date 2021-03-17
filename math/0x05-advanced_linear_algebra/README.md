@@ -26,6 +26,7 @@ Concepts of Linear Algebra: Eigenvalues, eigenvectors, cofactor, matrix inverse,
 
 [0-determinant.py](0-determinant.py) - Calculates the determinant of a matrix
 [1-minor.py](1-minor.py) - Calculates the minor matrix of a matrix.
+[2-cofactor.py](2-cofactor.py) - calculates the cofactor matrix of a matrix.
 
 
 
