@@ -71,7 +71,7 @@ def minor(matrix):
     - matrix is a list of lists whose minor matrix should be calculated.
     Returns: the minor matrix of matrix
     """
-    if type(matrix) != list:
+    if type(matrix) is not list:
         raise TypeError("matrix must be a list of lists")
     n = len(matrix)
 
@@ -79,7 +79,7 @@ def minor(matrix):
         raise TypeError("matrix must be a list of lists")
 
     for row in matrix:
-        if type(row) != list:
+        if type(row) is not list:
             raise TypeError("matrix must be a list of lists")
 
         if len(row) != n:
@@ -87,9 +87,6 @@ def minor(matrix):
 
     if n == 1:
         return [[1]]
-
-    # all_minors = []
-    # row_minors = []
     newm = []
     temp = []
     minors = [[0 for j in range(n)] for i in range(n)]
@@ -106,19 +103,5 @@ def minor(matrix):
             if newm:
                 # Add a new minor
                 minors[h][w] = determinant(newm)
-                # all_minors.append(newm.copy())
             newm = []
-    #     if all_minors:
-    #         row_minors.append(all_minors.copy())
-    #     all_minors = []  # clean for the next row
-    # # find the determinant of each minor matrix
-    # minors = []
-    # temp2 = []
-    # for list_minors in row_minors:
-    #     for m in list_minors:
-    #         det = determinant(m)
-    #         temp2.append(det)
-    #     if temp2:
-    #         minors.append(temp2.copy())
-    #     temp2 = []
     return minors
