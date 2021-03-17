@@ -25,7 +25,7 @@ def definiteness(matrix):
         return None
 
     eigvalues, _ = np.linalg.eig(matrix)
-    print("eigenvalues", eigvalues)
+    # print("eigenvalues", eigvalues)
 
     semipositive = np.where(eigvalues >= 0, True, False)
     seminegative = np.where(eigvalues <= 0, True, False)
