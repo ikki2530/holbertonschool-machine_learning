@@ -71,27 +71,26 @@ def minor(matrix):
     - matrix is a list of lists whose minor matrix should be calculated.
     Returns: the minor matrix of matrix
     """
+    if type(matrix) != list:
+        raise TypeError("matrix must be a list of lists")
     n = len(matrix)
-    if n == 1 and len(matrix[0]) == 0 and type(
-       matrix) == list and type(matrix[0]) == list:
-        return [[0]]
-
-    if n == 1 and len(matrix[0]) == 1 and type(
-       matrix) == list and type(matrix[0]) == list:
-        return [[1]]
 
     if n == 0:
         raise TypeError("matrix must be a list of lists")
 
-    if type(matrix) != list:
-        raise TypeError("matrix must be a list of lists")
-
+    # if n == 1 and len(matrix[0]) == 0 and type(
+    #    matrix) == list and type(matrix[0]) == list:
+    #     return [[0]]
     for row in matrix:
         if type(row) != list:
             raise TypeError("matrix must be a list of lists")
 
         if len(row) != n:
             raise ValueError("matrix must be a square matrix")
+
+    if n == 1 and len(matrix[0]) == 1 and type(
+       matrix) == list and type(matrix[0]) == list:
+        return [[1]]
 
     all_minors = []
     row_minors = []
