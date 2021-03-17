@@ -72,6 +72,10 @@ def minor(matrix):
     Returns: the minor matrix of matrix
     """
     n = len(matrix)
+    if n == 1 and len(matrix[0]) == 0 and type(
+       matrix) == list and type(matrix[0]) == list:
+        return [[1]]
+
     if n == 1 and len(matrix[0]) == 1 and type(
        matrix) == list and type(matrix[0]) == list:
         return [[1]]
