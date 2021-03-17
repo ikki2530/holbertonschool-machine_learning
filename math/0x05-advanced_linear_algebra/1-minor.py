@@ -88,10 +88,11 @@ def minor(matrix):
     if n == 1:
         return [[1]]
 
-    all_minors = []
-    row_minors = []
+    # all_minors = []
+    # row_minors = []
     newm = []
     temp = []
+    minors = [[0 for j in range(n)] for i in range(n)]
     # find the minor matrices
     for h in range(n):
         for w in range(n):
@@ -104,19 +105,20 @@ def minor(matrix):
                 temp = []
             if newm:
                 # Add a new minor
-                all_minors.append(newm.copy())
+                minors[h][w] = determinant(newm)
+                # all_minors.append(newm.copy())
             newm = []
-        if all_minors:
-            row_minors.append(all_minors.copy())
-        all_minors = []  # clean for the next row
-    # find the determinant of each minor matrix
-    minors = []
-    temp2 = []
-    for list_minors in row_minors:
-        for m in list_minors:
-            det = determinant(m)
-            temp2.append(det)
-        if temp2:
-            minors.append(temp2.copy())
-        temp2 = []
+    #     if all_minors:
+    #         row_minors.append(all_minors.copy())
+    #     all_minors = []  # clean for the next row
+    # # find the determinant of each minor matrix
+    # minors = []
+    # temp2 = []
+    # for list_minors in row_minors:
+    #     for m in list_minors:
+    #         det = determinant(m)
+    #         temp2.append(det)
+    #     if temp2:
+    #         minors.append(temp2.copy())
+    #     temp2 = []
     return minors
