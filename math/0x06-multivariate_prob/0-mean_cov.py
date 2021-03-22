@@ -18,9 +18,7 @@ def mean_cov(X):
         the covariance matrix of the data set.
     """
     n, d = X.shape
-    print("n", n, " | d", d)
     mean = np.mean(X, axis=0, keepdims=True)
-    print("mean shape", mean.shape)
     cov = np.dot((X - mean).T, (X - mean)) / (n - 1)
 
     return mean, cov
