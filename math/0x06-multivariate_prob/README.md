@@ -28,7 +28,11 @@ Concepts of pultivariate probability: Joint, conditional, marginal probabilities
 
 [0-mean_cov.py](0-mean_cov.py) - calculates the mean and covariance of a data set.
 
-[1-correlation.py](1-correlation.py) - Calculates a correlation matrix
+[1-correlation.py](1-correlation.py) - Calculates a correlation matrix.
+
+[multinormal.py](multinormal.py) - Represents a Multivariate Normal distribution.
+
+
 
 
 ## Authors
