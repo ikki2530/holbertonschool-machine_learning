@@ -7,34 +7,28 @@
 * [Authors](#authors)
 
 ## Description
-Concepts of Linear Algebra: Eigenvalues, eigenvectors, cofactor, matrix inverse, etc.
+Concepts of pultivariate probability: Joint, conditional, marginal probabilities, etc.
 
 
 ## Learning Objectives
 ### General
 
-- What is a determinant? How would you calculate it?
-- What is a minor, cofactor, adjugate? How would calculate them?
-- What is an inverse? How would you calculate it?
-- What are eigenvalues and eigenvectors? How would you calculate them?
-- What is definiteness of a matrix? How would you determine a matrix’s definiteness?
+- Who is Carl Friedrich Gauss?
+- What is a joint/multivariate distribution?
+- What is a covariance?
+- What is a correlation coefficient?
+- What is a covariance matrix?
+- What is a multivariate Gaussian distribution?
+
 
 
 
 
 ## Files Description
 
-[0-determinant.py](0-determinant.py) - Calculates the determinant of a matrix.
+[0-mean_cov.py](0-mean_cov.py) - calculates the mean and covariance of a data set.
 
-[1-minor.py](1-minor.py) - Calculates the minor matrix of a matrix.
-
-[2-cofactor.py](2-cofactor.py) - Calculates the cofactor matrix of a matrix.
-
-[3-adjugate.py](3-adjugate.py) - Calculates the adjugate matrix of a matrix.
-
-[4-inverse.py](4-inverse.py) - Calculates the inverse of a matrix.
-
-[5-definiteness.py](5-definiteness.py) - calculates the definiteness of a matrix.
+[1-correlation.py](1-correlation.py) - Calculates a correlation matrix
 
 
 ## Authors
