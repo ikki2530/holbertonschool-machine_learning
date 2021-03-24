@@ -31,3 +31,5 @@ Concepts of unsupervised learning
 ## Files Description
 
 [0-pca.py](0-pca.py) - performs PCA on a dataset.
+
+[1-pca.py](1-pca.py) -  performs PCA on a dataset
