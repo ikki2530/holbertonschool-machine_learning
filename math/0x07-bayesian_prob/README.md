@@ -7,21 +7,18 @@
 * [Authors](#authors)
 
 ## Description
-Concepts of pultivariate probability: Joint, conditional, marginal probabilities, etc.
+Concepts of Bayesian Probability: Bayes Theorem.
 
 
 ## Learning Objectives
 ### General
 
-- Who is Carl Friedrich Gauss?
-- What is a joint/multivariate distribution?
-- What is a covariance?
-- What is a correlation coefficient?
-- What is a covariance matrix?
-- What is a multivariate Gaussian distribution?
-
-
-
+- What is Bayesian Probability?
+- What is Bayes’ rule and how do you use it?
+- What is a base rate?
+- What is a prior?
+- What is a posterior?
+- What is a likelihood?
 
 
 ## Files Description
@@ -32,9 +29,7 @@ Concepts of pultivariate probability: Joint, conditional, marginal probabilities
 
 [2-marginal.py](2-marginal.py) - calculates the marginal probability of obtaining the data.
 
-
-
-
+[3-posterior.py](3-posterior.py) - calculates the posterior probability for the various hypothetical probabilities of developing severe side effects given the data.
 
 ## Authors
 * Diego Gomez- [Linkedin](https://www.linkedin.com/in/diego-g%C3%B3mez-8861b61a1/) / [Twitter](https://twitter.com/dagomez2530)
