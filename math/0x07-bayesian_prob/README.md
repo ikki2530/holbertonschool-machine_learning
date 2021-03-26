@@ -28,6 +28,10 @@ Concepts of pultivariate probability: Joint, conditional, marginal probabilities
 
 [0-likelihood.py](0-likelihood.py) - calculates the likelihood of obtaining this data given various hypothetical probabilities of developing severe side effects.
 
+[1-intersection.py](1-intersection.py) - calculates the intersection of obtaining this data with the various hypothetical probabilities.
+
+[2-marginal.py](2-marginal.py) - calculates the marginal probability of obtaining the data.
+
 
 
 
