@@ -26,7 +26,8 @@ Concepts of pultivariate probability: Joint, conditional, marginal probabilities
 
 ## Files Description
 
-[]()
+[0-likelihood.py](0-likelihood.py) - calculates the likelihood of obtaining this data given various hypothetical probabilities of developing severe side effects.
+
 
 
 

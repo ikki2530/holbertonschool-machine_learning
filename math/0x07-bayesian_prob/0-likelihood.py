@@ -19,7 +19,7 @@ def likelihood(x, n, P):
     Returns: a 1D numpy.ndarray containing the likelihood of obtaining
     the data, x and n, for each probability in P, respectively.
     """
-    if type(n) is not int or n < 0:
+    if type(n) is not int or n <= 0:
         raise ValueError("n must be a positive integer")
 
     if type(x) is not int or x < 0:
@@ -28,15 +28,15 @@ def likelihood(x, n, P):
     if x > n:
         raise ValueError("x cannot be greater than n")
 
-    if type(P) is not np.ndarray or len(P.shape) != 1:
+    if type(P) is not np.ndarray or P.ndim != 1:
         raise TypeError("P must be a 1D numpy.ndarray")
 
-    if not np.logical_and(P >= 0, P <= 1).all():
+    if (P < 0).any() or (P > 1).any():
         raise ValueError("All values in P must be in the range [0, 1]")
 
     denominador = np.math.factorial(x) * np.math.factorial(n - x)
     factorial = np.math.factorial(n) / denominador
 
-    prob = factorial * np.power(P, x) * np.power(P - 1, n - x)
+    prob = factorial * np.power(P, x) * np.power(1 - P, n - x)
 
     return prob
