@@ -58,19 +58,21 @@ def intersection(x, n, P, Pr):
 
     if type(P) is not np.ndarray or P.ndim != 1:
         raise TypeError("P must be a 1D numpy.ndarray")
+    if type(Pr) is not np.ndarray or Pr.ndim != 1:
+        raise TypeError("Pr must be a numpy.ndarray with the same shape as P")
 
-    if type(Pr) is not np.ndarray or P.shape != Pr.shape:
+    if Pr.shape[0] != P.shape[0]:
         raise TypeError("Pr must be a numpy.ndarray with the same shape as P")
 
     if (P < 0).any() or (P > 1).any():
-        message = "All values in {} must be in the range [0, 1]".format(P)
+        message = "All values in P must be in the range [0, 1]"
         raise ValueError(message)
     if (Pr < 0).any() or (Pr > 1).any():
-        message = "All values in {} must be in the range [0, 1]".format(Pr)
+        message = "All values in Pr must be in the range [0, 1]"
         raise ValueError(message)
 
-    if not np.sum(Pr) == 1:
-        ValueError("Pr must sum to 1")
+    if not np.isclose(Pr.sum(), 1):
+        raise ValueError("Pr must sum to 1")
 
     likeh = likelihood(x, n, P)
     intersection = likeh * Pr
