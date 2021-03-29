@@ -19,6 +19,6 @@ def initialize(X, k):
     maxs = np.max(X, axis=0)
     try:
         centroids = np.random.uniform(mins, maxs, size=(k, X.shape[1]))
-    except e:
+    except Exception:
         return None
     return centroids
