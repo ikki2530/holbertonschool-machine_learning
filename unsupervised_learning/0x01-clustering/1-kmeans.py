@@ -62,7 +62,15 @@ def kmeans(X, k, iterations=1000):
         index of the cluster in C that each data point belongs to.
     """
     # (k, d)
+    if not isinstance(X, np.ndarray) or len(X.shape) != 2:
+        return None, None
+    if type(iterations) is not int or iterations < 1:
+        return None, None
+    if not isinstance(k, int) or k <= 0 or k >= X.shape[0]:
+        return None, None
     C = initialize(X, k)
+    if C is None:
+        return None, None
 
     k, d = C.shape
     n, _ = X.shape
