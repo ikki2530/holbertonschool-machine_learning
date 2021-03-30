@@ -44,6 +44,9 @@ Concepts of clustering
 
 [11-gmm.py](11-gmm.py) - calculates a GMM from a dataset.
 
+[12-agglomerative.py](12-agglomerative.py) - performs agglomerative clustering on a dataset.
+
+
 
 
 ## Authors
