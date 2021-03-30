@@ -27,6 +27,25 @@ def initialize(X, k):
     return centroids
 
 
+def distances(a, b):
+    """
+    Function that computes the euclidian distance
+    from all points in a which every other in b.
+    - a ndarray of shape(n, d).
+    - b ndarray of shape(m, d).
+        - n and m are the number of points.
+        - d is the dimention of each point.
+    Returns: (n, m) ndarray with distances.
+    """
+    b = b[np.newaxis, :]
+    a = a[:, np.newaxis, :]
+
+    diff = a - b
+    dist = np.linalg.norm(diff, axis=-1, keepdims=False)
+
+    return dist
+
+
 def kmeans(X, k, iterations=1000):
     """
     Performs K-means on a dataset.
@@ -51,26 +70,25 @@ def kmeans(X, k, iterations=1000):
 
     k, d = C.shape
     n, _ = X.shape
+    dist = np.zeros(n)
 
-    C = np.zeros((k, d))
-    clss = np.zeros((n,))
-    clusters = np.empty(shape=[k, d])
-    # print("k", k, " | d", d, " | n", n)
-    # create clusters
     for i in range(iterations):
-        centroids = np.copy(C)
-        distance = np.sqrt(np.sum((X[:, None] - C)**2, axis=-1))
-        clss = np.argmin(distance, axis=1)
-        # print("closest", clss.shape)
+        dists = distances(X, C)
+        clss = np.argmin(dists, axis=1).reshape(-1)
+
+        C_changed = False
         for j in range(k):
-            idx = np.argwhere(clss == j)
-            if len(idx) == 0:
-                C[j] = initialize(X, 1)
+            clust = X[clss == j]
+            if len(clust) == 0:
+                mean_j = initialize(X, 1)[0]
             else:
-                C[j] = np.mean(X[idx], axis=0)
-        if (centroids == C).all():
-            return C, clss
-    distance = np.sqrt(np.sum((X[:, None] - C)**2, axis=-1))
-    clss = np.argmin(distance, axis=1)
+                mean_j = clust.mean(axis=0)
+
+            if (mean_j != C[j]).all():
+                C[j] = mean_j
+                C_changed = True
+
+        if not C_changed:
+            break
 
     return C, clss
