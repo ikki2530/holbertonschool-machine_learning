@@ -38,7 +38,11 @@ Concepts of clustering
 
 [0-initialize.py](0-initialize.py) - initializes cluster centroids for K-means.
 
-[10-kmeans.py](10-kmeans.py) - performs K-means on a dataset
+[1-kmeans.py](1-kmeans.py) -  performs K-means on a dataset.
+
+[10-kmeans.py](10-kmeans.py) - performs K-means on a dataset.
+
+[11-gmm.py](11-gmm.py) - calculates a GMM from a dataset.
 
 
 
