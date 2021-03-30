@@ -62,11 +62,7 @@ def kmeans(X, k, iterations=1000):
         index of the cluster in C that each data point belongs to.
     """
     # (k, d)
-    if type(iterations) is not int or iterations < 1:
-        return None, None
     C = initialize(X, k)
-    if C is None:
-        return None, None
 
     k, d = C.shape
     n, _ = X.shape
