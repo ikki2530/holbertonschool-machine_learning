@@ -38,6 +38,9 @@ Concepts of clustering
 
 [0-initialize.py](0-initialize.py) - initializes cluster centroids for K-means.
 
+[10-kmeans.py](10-kmeans.py) - performs K-means on a dataset
+
+
 
 ## Authors
 * Diego Gomez- [Linkedin](https://www.linkedin.com/in/diego-g%C3%B3mez-8861b61a1/) / [Twitter](https://twitter.com/dagomez2530)
