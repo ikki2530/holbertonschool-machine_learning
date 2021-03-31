@@ -50,6 +50,8 @@ Concepts of clustering
 
 [6-expectation.py](6-expectation.py) - calculates the expectation step in the EM algorithm for a GMM.
 
+[7-maximization.py](7-maximization.py) - calculates the maximization step in the EM algorithm for a GMM. 
+
 [10-kmeans.py](10-kmeans.py) - performs K-means on a dataset.
 
 [11-gmm.py](11-gmm.py) - calculates a GMM from a dataset.
