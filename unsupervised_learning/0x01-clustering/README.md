@@ -44,7 +44,9 @@ Concepts of clustering
 
 [3-optimum.py](3-optimum.py) - tests for the optimum number of clusters by variance.
 
-[4-initialize.py](4-initialize.py) - Initializes variables for a Gaussian Mixture Model
+[4-initialize.py](4-initialize.py) - Initializes variables for a Gaussian Mixture Model.
+
+[5-pdf.py](5-pdf.py) - calculates the probability density function of a Gaussian distribution.
 
 [10-kmeans.py](10-kmeans.py) - performs K-means on a dataset.
 
