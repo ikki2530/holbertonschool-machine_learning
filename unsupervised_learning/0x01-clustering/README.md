@@ -54,6 +54,8 @@ Concepts of clustering
 
 [8-EM.py](8-EM.py) - performs the expectation maximization for a GMM.
 
+[9-BIC.py](9-BIC.py) - finds the best number of clusters for a GMM using the Bayesian Information Criterion.
+
 [10-kmeans.py](10-kmeans.py) - performs K-means on a dataset.
 
 [11-gmm.py](11-gmm.py) - calculates a GMM from a dataset.
