@@ -48,6 +48,8 @@ Concepts of clustering
 
 [5-pdf.py](5-pdf.py) - calculates the probability density function of a Gaussian distribution.
 
+[6-expectation.py](6-expectation.py) - calculates the expectation step in the EM algorithm for a GMM.
+
 [10-kmeans.py](10-kmeans.py) - performs K-means on a dataset.
 
 [11-gmm.py](11-gmm.py) - calculates a GMM from a dataset.
