@@ -40,6 +40,10 @@ Concepts of clustering
 
 [1-kmeans.py](1-kmeans.py) -  performs K-means on a dataset.
 
+[2-variance.py](2-variance.py) - calculates the total intra-cluster variance for a data set.
+
+[3-optimum.py](3-optimum.py) - tests for the optimum number of clusters by variance.
+
 [10-kmeans.py](10-kmeans.py) - performs K-means on a dataset.
 
 [11-gmm.py](11-gmm.py) - calculates a GMM from a dataset.
