@@ -42,6 +42,8 @@ Concepts of Hidden Markov Models.
 
 [0-markov_chain.py](0-markov_chain.py) - Determines the probability of a markov chain being in a particular state after a specified number of iterations.
 
+[1-regular.py](1-regular.py) - Determines the steady state probabilities of a regular markov chain.
+
 
 
 ## Authors
