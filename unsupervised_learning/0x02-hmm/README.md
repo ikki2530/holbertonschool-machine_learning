@@ -44,6 +44,9 @@ Concepts of Hidden Markov Models.
 
 [1-regular.py](1-regular.py) - Determines the steady state probabilities of a regular markov chain.
 
+[2-absorbing.py](2-absorbing.py) - Determines if a markov chain is absorbing.
+
+
 
 
 ## Authors
