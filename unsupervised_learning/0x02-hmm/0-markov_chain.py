@@ -25,6 +25,8 @@ def markov_chain(P, s, t=1):
     n1, n2 = P.shape
     if n1 != n2:
         return None
+    if np.sum(P, axis=1).all() != 1:
+        return None
     if not isinstance(s, np.ndarray) or s.ndim != 2:
         return None
     if s.shape[1] != n1:
