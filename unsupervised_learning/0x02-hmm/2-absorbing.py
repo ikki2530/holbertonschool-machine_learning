@@ -13,12 +13,12 @@ def absorbing(P):
     Returns: True if it is absorbing, or False on failure.
     """
     if not isinstance(P, np.ndarray) or P.ndim != 2:
-        return False
+        return None
     n1, n2 = P.shape
     if n1 != n2:
-        return False
+        return None
     if np.sum(P, axis=1).all() != 1:
-        return False
+        return None
 
     d = np.diag(P)
     if (d == 1).all():
@@ -28,7 +28,7 @@ def absorbing(P):
 
     for i in range(n1):
         for j in range(n2):
-            if i == j and i + 1 < len(P):
-                if P[i + 1][j] == 0 and P[i][j + 1] == 0:
-                    return False
-    return True
+            if i == j:
+                if P[i][j] == 1:
+                    return True
+    return False
