@@ -31,9 +31,12 @@ def markov_chain(P, s, t=1):
         return None
     if s.shape[1] != n1:
         return None
+    if np.sum(s) != 1:
+        return None
+    if type(t) != int or t < 0:
+        return None
 
     for i in range(t):
-        print("s", s)
         s = np.matmul(s, P)
 
     return s
