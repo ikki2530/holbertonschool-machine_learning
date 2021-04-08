@@ -48,6 +48,8 @@ Concepts of Hidden Markov Models.
 
 [3-forward.py](3-forward.py) - performs the forward algorithm for a hidden markov model.
 
+[4-viterbi.py](4-viterbi.py) - calculates the most likely sequence of hidden states for a hidden markov model.
+
 
 
 ## Authors
