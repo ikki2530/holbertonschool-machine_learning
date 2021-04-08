@@ -50,6 +50,8 @@ Concepts of Hidden Markov Models.
 
 [4-viterbi.py](4-viterbi.py) - calculates the most likely sequence of hidden states for a hidden markov model.
 
+[5-backward.py](5-backward.py) - performs the backward algorithm for a hidden markov model. 
+
 
 
 ## Authors
