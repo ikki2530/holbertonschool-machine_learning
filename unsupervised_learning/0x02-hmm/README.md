@@ -50,7 +50,9 @@ Concepts of Hidden Markov Models.
 
 [4-viterbi.py](4-viterbi.py) - calculates the most likely sequence of hidden states for a hidden markov model.
 
-[5-backward.py](5-backward.py) - performs the backward algorithm for a hidden markov model. 
+[5-backward.py](5-backward.py) - performs the backward algorithm for a hidden markov model.
+
+[6-baum_welch.py](6-baum_welch.py) - performs the Baum-Welch algorithm for a hidden markov model.
 
 
 
