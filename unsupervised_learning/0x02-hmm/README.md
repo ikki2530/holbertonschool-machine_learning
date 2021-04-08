@@ -46,6 +46,7 @@ Concepts of Hidden Markov Models.
 
 [2-absorbing.py](2-absorbing.py) - Determines if a markov chain is absorbing.
 
+[3-forward.py](3-forward.py) - performs the forward algorithm for a hidden markov model.
 
 
 
