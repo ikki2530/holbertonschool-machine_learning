@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Class GaussianProcess that represents
 a noiseless 1D Gaussian process"""
-
 import numpy as np
 
 
@@ -18,6 +17,7 @@ class GaussianProcess:
         - sigma_f is the standard deviation given to the output of
         the black-box function.
         """
+        #print("working!")
         self.X = X_init
         self.Y = Y_init
         self.l = l
