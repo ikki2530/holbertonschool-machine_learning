@@ -32,12 +32,16 @@ Concepts of Hyperparameter tuning.
 ## Files Description
 
 [0-gp.py](0-gp.py) - represents a noiseless 1D Gaussian process.
+
 [1-gp.py](1-gp.py) - predicts the mean and standard deviation of points in a Gaussian process.
+
 [2-gp.py](2-gp.py) - updates a Gaussian Process.
+
 [3-bayes_opt.py](3-bayes_opt.py) - performs Bayesian optimization on a noiseless 1D Gaussian process.
 
+[4-bayes_opt.py](4-bayes_opt.py) - calculates the next best sample location.
 
-
+[5-bayes_opt.py](5-bayes_opt.py) - optimizes the black-box function.
 
 
 ## Authors
