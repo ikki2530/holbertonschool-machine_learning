@@ -18,7 +18,6 @@ class GaussianProcess:
         - sigma_f is the standard deviation given to the output of
         the black-box function.
         """
-        #print("working!")
         self.X = X_init
         self.Y = Y_init
         self.l = l
