@@ -27,9 +27,10 @@ Concepts of Hyperparameter tuning.
 
 ## Files Description
 
-[0-vanilla.py](0-vanilla.py) - creates an autoencoder
-[1-sparse.py](1-sparse.py) - creates a sparse autoencoder
+[0-vanilla.py](0-vanilla.py) - Creates an autoencoder
+[1-sparse.py](1-sparse.py) - Creates a sparse autoencoder
 [2-convolutional.py](2-convolutional.py) - Creates a convolutional autoencoder
+[3-variational.py](3-variational.py) - Creates a variational autoencoder
 
 
 
