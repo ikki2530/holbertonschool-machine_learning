@@ -34,12 +34,12 @@ def autoencoder(input_dims, filters, latent_dims):
         encode = keras.layers.Conv2D(filters[i], (3, 3),
                                      padding="same",
                                      activation='relu')(encode)
-        encode = keras.layers.MaxPooling2D(pool_size=(2, 2),
+        encode = keras.layers.MaxPooling2D((2, 2),
                                            padding='same')(encode)
     decode = keras.layers.Input(shape=latent_dims)
     input_decode = decode
     padding = 'same'
-    for i in range(len(filters) - 1, 0, -1):
+    for i in range(len(filters) - 1, -1, -1):
         if i == 0:
             padding = 'valid'
         decode = keras.layers.Conv2D(filters[i], (3, 3),
