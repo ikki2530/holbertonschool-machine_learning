@@ -26,7 +26,7 @@ Implement RNN, LSTM, GRU and bidirectional RNN.
 ### Single neuron.
 
 [0-rnn_cell.py](0-rnn_cell.py) - represents a cell of a simple RNN.
-
+[1-rnn.py](1-rnn.py) - performs forward propagation for a simple RNN.
 
 ## Authors
 * Diego Gomez- [Linkedin](https://www.linkedin.com/in/diego-g%C3%B3mez-8861b61a1/) / [Twitter](https://twitter.com/dagomez2530)
