@@ -28,8 +28,13 @@ class GRUCell():
         self.by = np.zeros((1, o))
 
     def softmax(self, x):
-        e_x = np.exp(x)
-        return e_x / e_x.sum()
+        """
+        Function to compute softmax values for each sets of scores in x
+        """
+        x_max = np.max(x, axis=1, keepdims=True)
+        e_x = np.exp(x - x_max)
+
+        return e_x / np.sum(e_x, axis=1, keepdims=True)
 
     # Function
     def sigmoid(self, x):
