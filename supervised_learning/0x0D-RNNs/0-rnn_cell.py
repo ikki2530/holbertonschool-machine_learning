@@ -23,8 +23,10 @@ class RNNCell():
         """
         Function to compute softmax values for each sets of scores in x
         """
-        e_x = np.exp(x)
-        return e_x / e_x.sum()
+        x_max = np.max(x, axis=1, keepdims=True)
+        e_x = np.exp(x - x_max)
+
+        return e_x / np.sum(e_x, axis=1, keepdims=True)
 
     def forward(self, h_prev, x_t):
         """
