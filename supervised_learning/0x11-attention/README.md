@@ -35,6 +35,12 @@ Forecasting BTC price using RNN.
 
 [4-positional_encoding.py](4-positional_encoding.py) - calculate the attention for machine translation baseds on a paper.
 
+[5-sdp_attention.py](5-sdp_attention.py) - calculates the scaled dot product attention.
+
+[]()
+
+[]() - 
+
 []()
 
 ## Authors
