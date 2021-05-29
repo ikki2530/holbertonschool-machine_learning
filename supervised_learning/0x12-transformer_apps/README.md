@@ -27,5 +27,9 @@ Forecasting BTC price using RNN.
 
 [1-dataset.py](1-dataset.py) - Create the instance method `def encode(self, pt, en):` that encodes a translation into tokens.
 
+[2-dataset.py](2-dataset.py) - Method that acts as a tensorflow wrapper for the encode instance method.
+
+[3-dataset.py](3-dataset.py) - Update the class constructor `def __init__(self, batch_size, max_len):`
+
 ## Authors
 * Diego Gomez- [Linkedin](https://www.linkedin.com/in/diego-g%C3%B3mez-8861b61a1/) / [Twitter](https://twitter.com/dagomez2530)
