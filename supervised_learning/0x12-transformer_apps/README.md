@@ -7,8 +7,8 @@
 * [Authors](#authors)
 
 ## Description
-Forecasting BTC price using RNN.
 
+Transformers application.
 
 ## Learning Objectives
 ### General
