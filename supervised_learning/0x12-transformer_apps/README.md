@@ -31,5 +31,11 @@ Forecasting BTC price using RNN.
 
 [3-dataset.py](3-dataset.py) - Update the class constructor `def __init__(self, batch_size, max_len):`
 
+[4-create_masks.py](4-create_masks.py) - creates all masks for training/validation:
+
+[5-train.py](5-train.py) - creates and trains a transformer model for machine translation of Portuguese to English using our previously created dataset.
+
+[5-transformer.py](5-transformer.py) - transformer implementation.
+
 ## Authors
 * Diego Gomez- [Linkedin](https://www.linkedin.com/in/diego-g%C3%B3mez-8861b61a1/) / [Twitter](https://twitter.com/dagomez2530)
