@@ -25,5 +25,7 @@ Forecasting BTC price using RNN.
 
 [0-dataset.py](0-dataset.py) - Loads and preps a dataset for machine translation.
 
+[1-dataset.py](1-dataset.py) - Create the instance method `def encode(self, pt, en):` that encodes a translation into tokens.
+
 ## Authors
 * Diego Gomez- [Linkedin](https://www.linkedin.com/in/diego-g%C3%B3mez-8861b61a1/) / [Twitter](https://twitter.com/dagomez2530)
