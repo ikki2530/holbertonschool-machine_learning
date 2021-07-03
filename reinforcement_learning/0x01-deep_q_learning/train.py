@@ -77,6 +77,6 @@ if __name__ == '__main__':
                    gamma=.99, target_model_update=100,
                    train_interval=4, delta_clip=1.)
     dqn.compile(Adam(lr=.00025), metrics=['mae'])
-    dqn.fit(env, nb_steps=175000, log_interval=10000,
+    dqn.fit(env, nb_steps=1750000, log_interval=10000,
             visualize=False, verbose=2)
     model.save_weights('policy.h5', overwrite=True)
